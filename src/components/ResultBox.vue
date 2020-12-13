@@ -6,8 +6,12 @@
       v-text="'And the result...'" />
 
     <!-- mixture effect -->
-    <big-mixture-item
-      :color="mixtureEffectFill" />
+    <flask-item
+      size="15"
+      amount="100"
+      :color="mixtureEffectFill"
+      :buttonsVisible="false"
+      style="margin: 3rem auto"/>
 
     <!-- refresh btn -->
     <button-item
@@ -21,7 +25,7 @@
 </template>
 
 <script>
-import BigMixtureItem from './BigMixtureItem'
+import FlaskItem from './shared/FlaskItem.vue'
 import ButtonItem from './shared/ButtonItem.vue'
 
 export default {
@@ -35,11 +39,11 @@ export default {
   computed: {
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
-      return { 'background-color': `rgb(${redCol}, ${greenCol}, ${blueCol})` }
+      return `rgb(${redCol}, ${greenCol}, ${blueCol})`
     }
   },
   components: {
-    BigMixtureItem,
+    FlaskItem,
     ButtonItem
   }
 }
