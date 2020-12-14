@@ -10,7 +10,9 @@
     <!-- result box -->
     <result-box
       @refresh="refresh"
-      :mixtures="mixtures" />
+      @about="about"
+      :mixtures="mixtures"
+      />
 
   </div>
 </template>
@@ -51,6 +53,9 @@ export default {
 
     refresh () {
       this.mixtures = this.mixtures.map(item => ({ ...item, amount: 50 }))
+    },
+    about () {
+      this.modalVisible = true
     }
   },
   components: {

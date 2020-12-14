@@ -5,7 +5,7 @@
     <button-item
       v-if="buttonsVisible"
       class="flask__btn flask__btn--left"
-      icon="arrow-down"
+      icon="pi-arrow-down"
       @click="$emit('decrement')" />
 
     <div
@@ -16,7 +16,7 @@
     <button-item
       v-if="buttonsVisible"
       class="flask__btn flask__btn--right"
-      icon="arrow-up"
+      icon="pi-arrow-up"
       :movement="-0.5"
       @click="$emit('increment')" />
   </div>
@@ -41,7 +41,10 @@ export default {
       type: String
     },
     variant: {
-      type: String
+      type: String,
+      validator: value => {
+        return ['red', 'green', 'blue'].includes(value)
+      }
     },
     buttonsVisible: {
       type: Boolean,
