@@ -1,6 +1,5 @@
 <template>
   <button
-    @click="$emit('click')"
     :style="btnStyles"
     class="btn">
     <!-- icon -->

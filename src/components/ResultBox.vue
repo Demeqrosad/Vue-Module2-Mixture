@@ -22,7 +22,7 @@
       icon="pi-refresh" />
     <!-- about btn -->
     <button-item
-      @click="$emit('about')"
+      @click="showModal"
       :size="4"
       :movement="-0.5"
       :font-size="1.5"
@@ -63,19 +63,11 @@ export default {
       required: true
     }
   },
-  data: () => ({
-    modalVisible2: true
-  }),
   mixins: [modalMixin],
   computed: {
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `rgb(${redCol}, ${greenCol}, ${blueCol})`
-    }
-  },
-  methods: {
-    about () {
-      this.modalVisible = true
     }
   },
   components: {
