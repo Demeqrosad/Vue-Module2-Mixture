@@ -68,4 +68,28 @@ export default {
     }
   }
 }
+
+.slide-fade-enter-active {
+  transition: opacity .8s;
+}
+
+.slide-fade-enter-from {
+  opacity: 0;
+}
+
+.slide-fade-enter-to {
+  opacity: 1;
+}
+
+.slide-fade-leave-active {
+  transition: opacity .8s;
+}
+
+.slide-fade-leave-from {
+  opacity: 1;
+}
+
+.slide-fade-leave-to {
+  opacity: 0;
+}
 </style>

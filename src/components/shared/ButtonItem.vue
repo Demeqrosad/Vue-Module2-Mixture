@@ -65,7 +65,7 @@ export default {
   transition: .3s;
   outline: none;
   font-size: 1.5rem;
-  color: #637892;
+  color: $color-text;
 
   &:hover {
     margin-top: var(--movement);

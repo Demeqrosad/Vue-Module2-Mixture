@@ -9,25 +9,29 @@
 
       <app-menu class="navbar"/>
 
-      <!-- color mixin -->
-      <color-mixin />
-
+      <!-- router view -->
+      <router-view v-slot="{ Component }">
+        <slide-fade-animation>
+          <component class="animate__faster" :is="Component" />
+        </slide-fade-animation>
+      </router-view>
     </div>
   </div>
 </template>
 
 <script>
 import './styles/global.scss'
+import 'animate.css/animate.min.css'
 import AppHeader from './components/AppHeader'
-import ColorMixin from './components/ColorMixin'
 import AppMenu from './components/AppMenu.vue'
+import SlideFadeAnimation from './components/shared/SlideFadeAnimation.vue'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    ColorMixin,
-    AppMenu
+    AppMenu,
+    SlideFadeAnimation
   }
 }
 </script>

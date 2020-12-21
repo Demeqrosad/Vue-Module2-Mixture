@@ -16,15 +16,18 @@ export default {
       items: [
         {
           label: 'Home',
-          icon: 'pi pi-fw pi-home'
+          icon: 'pi pi-fw pi-home',
+          to: '/'
         },
         {
           label: 'Mixin',
-          icon: 'pi pi-fw pi-filter'
+          icon: 'pi pi-fw pi-filter',
+          to: '/mixin'
         },
         {
           label: 'About',
-          icon: 'pi pi-fw pi-info'
+          icon: 'pi pi-fw pi-info',
+          to: '/about'
         }]
     }
   },

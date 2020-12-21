@@ -1,12 +1,14 @@
 <template>
-  <div class="flask" :style="flaskStyle">
+  <div ref="flask" class="flask animate__animated" :style="flaskStyle"
+    :class="isAnimated ? 'animate__shakeY' : ''"
+    @animationEnd="isAnimated = false">
 
     <!-- decrement btn -->
     <button-item
       v-if="buttonsVisible"
       class="flask__btn flask__btn--left"
       icon="pi-arrow-down"
-      @click="$emit('decrement')" />
+      @click="decrement" />
 
     <div
       :class="fillClasses"
@@ -18,7 +20,7 @@
       class="flask__btn flask__btn--right"
       icon="pi-arrow-up"
       :movement="-0.5"
-      @click="$emit('increment')" />
+      @click="increment" />
   </div>
 
 </template>
@@ -51,6 +53,11 @@ export default {
       default: true
     }
   },
+  data () {
+    return {
+      isAnimated: false
+    }
+  },
   computed: {
     flaskStyle () {
       return {
@@ -74,6 +81,20 @@ export default {
       }
 
       return style
+    }
+  },
+  methods: {
+    increment () {
+      this.$emit('increment')
+      this.isAnimated = true
+      // this.$refs.flask.classList.add('animate__shakeY')
+      // setTimeout(() => { this.$refs.flask.classList.remove('animate__shakeY') }, 800)
+    },
+    decrement () {
+      this.$emit('decrement')
+      this.isAnimated = true
+      // this.$refs.flask.classList.add('animate__shakeY')
+      // setTimeout(() => { this.$refs.flask.classList.remove('animate__shakeY') }, 800)
     }
   },
   components: {
@@ -141,6 +162,28 @@ export default {
       left: 1rem;
     }
   }
+}
+.fadeIn {
+  animation-name: 'fadeIn';
+  animation-iteration-count: 1;
+  animation-duration: .3s;
+}
 
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1 }
+}
+
+.zoomIn {
+  animation-name: 'zoomIn';
+  animation-iteration-count: 1;
+  animation-duration: .3s;
+}
+
+@keyframes zoomIn {
+  0% {  opacity: 0.8; transform: scale3d(1.1, 1.1, 1.1); }
+  20% { transform: scale3d(1,1,1); }
+  70% {  transform: scale3d(1.1,1.1,1.1); }
+  100% { opacity: 1 }
 }
 </style>

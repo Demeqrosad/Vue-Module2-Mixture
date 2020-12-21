@@ -13,6 +13,10 @@
       :buttonsVisible="false"
       style="margin: 3rem auto"/>
 
+    <!-- rgb -->
+    <p
+      v-text="mixtureEffectFill"/>
+
     <!-- refresh btn -->
     <button-item
       @click="$emit('refresh')"
@@ -28,24 +32,34 @@
       :font-size="1.5"
       icon="pi-question"
       style="font-weight: bold; margin: 0 1rem" />
-    <modal-item
-      v-if="modalVisible"
-      @cancel="hideModal">
+    <!-- share btn -->
+    <router-link :to='linkToColor'>
+      <button-item
+      :size="4"
+      :movement="-0.5"
+      :font-size="1.5"
+      icon="pi-share-alt"
+      style="font-weight: bold" />
+    </router-link>
+    <fade-animation>
+      <modal-item
+        v-if="modalVisible"
+        @cancel="hideModal">
 
-       <template v-slot:header>
-         heading text
-       </template>
+         <template v-slot:header>
+           heading text
+         </template>
 
-       <template v-slot:body>
-         body text
-       </template>
+         <template v-slot:body>
+           body text
+         </template>
 
-       <template v-slot:footer>
-         additional action button
-       </template>
+         <template v-slot:footer>
+           additional action button
+         </template>
 
-    </modal-item>
-
+      </modal-item>
+    </fade-animation>
   </div>
 </template>
 
@@ -53,6 +67,7 @@
 import FlaskItem from './shared/FlaskItem.vue'
 import ButtonItem from './shared/ButtonItem.vue'
 import ModalItem from './shared/ModalItem.vue'
+import FadeAnimation from './shared/FadeAnimation.vue'
 import modalMixin from '../mixins/ModalMixin.js'
 
 export default {
@@ -68,12 +83,17 @@ export default {
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `rgb(${redCol}, ${greenCol}, ${blueCol})`
+    },
+    linkToColor () {
+      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+      return `/color/${redCol}/${greenCol}/${blueCol}`
     }
   },
   components: {
     FlaskItem,
     ButtonItem,
-    ModalItem
+    ModalItem,
+    FadeAnimation
   }
 }
 </script>
