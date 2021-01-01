@@ -28,6 +28,11 @@ export default {
           label: 'About',
           icon: 'pi pi-fw pi-info',
           to: '/about'
+        },
+        {
+          label: 'My colors',
+          icon: 'pi pi-fw pi-palette',
+          to: '/my-colors'
         }]
     }
   },

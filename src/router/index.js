@@ -4,6 +4,7 @@ import About from '@/pages/AboutPage.vue'
 import Mixin from '@/pages/MixinPage.vue'
 import Color from '@/pages/ColorPage.vue'
 import ErrorPage from '@/pages/ErrorPage.vue'
+import MyColorsPage from '@/pages/MyColorsPage.vue'
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: '/mixin',
     name: 'Mixin',
     component: Mixin
+  },
+  {
+    path: '/my-colors',
+    name: 'MyColorsPage',
+    component: MyColorsPage
   },
   {
     path: '/color/:red?/:green?/:blue?',

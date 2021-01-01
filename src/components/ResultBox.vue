@@ -16,6 +16,8 @@
     <!-- rgb -->
     <p
       v-text="mixtureEffectFill"/>
+    <p
+      v-text="customColors"/>
 
     <!-- refresh btn -->
     <button-item
@@ -41,6 +43,14 @@
       icon="pi-share-alt"
       style="font-weight: bold" />
     </router-link>
+    <!-- add color btn -->
+    <button-item
+      @click="saveColor"
+      :size="4"
+      :movement="-0.5"
+      :font-size="1.5"
+      icon="pi-pencil"
+      style="font-weight: bold; margin: 0 1rem" />
     <fade-animation>
       <modal-item
         v-if="modalVisible"
@@ -69,6 +79,7 @@ import ButtonItem from './shared/ButtonItem.vue'
 import ModalItem from './shared/ModalItem.vue'
 import FadeAnimation from './shared/FadeAnimation.vue'
 import modalMixin from '../mixins/ModalMixin.js'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'ResultsBox',
@@ -80,6 +91,7 @@ export default {
   },
   mixins: [modalMixin],
   computed: {
+    ...mapGetters({ customColors: 'CustomColorsNumber' }),
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `rgb(${redCol}, ${greenCol}, ${blueCol})`
@@ -87,6 +99,16 @@ export default {
     linkToColor () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `/color/${redCol}/${greenCol}/${blueCol}`
+    },
+    customColors2 () {
+      const customColorsNumber = this.$store.state.colors.length
+      return `There are ${customColorsNumber} colors in your pocket!`
+    }
+  },
+  methods: {
+    ...mapActions(['addColor']),
+    saveColor () {
+      this.addColor(this.mixtures)
     }
   },
   components: {

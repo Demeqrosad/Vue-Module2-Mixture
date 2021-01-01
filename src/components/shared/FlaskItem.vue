@@ -8,7 +8,14 @@
       v-if="buttonsVisible"
       class="flask__btn flask__btn--left"
       icon="pi-arrow-down"
-      @click="decrement" />
+      @click="decrement"/>
+
+    <!-- remove btn -->
+    <button-item
+      v-if="btnRemove"
+      class="flask__btn flask__btn--middle"
+      icon="pi-trash"
+      @click="remove"/>
 
     <div
       :class="fillClasses"
@@ -51,6 +58,10 @@ export default {
     buttonsVisible: {
       type: Boolean,
       default: true
+    },
+    btnRemove: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -95,6 +106,9 @@ export default {
       this.isAnimated = true
       // this.$refs.flask.classList.add('animate__shakeY')
       // setTimeout(() => { this.$refs.flask.classList.remove('animate__shakeY') }, 800)
+    },
+    remove () {
+      this.$emit('remove')
     }
   },
   components: {
@@ -160,6 +174,11 @@ export default {
 
     &--left {
       left: 1rem;
+    }
+
+    &--middle {
+      transform: translate(-50%, -50%);
+      left: 50%;
     }
   }
 }
