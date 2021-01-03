@@ -13,14 +13,12 @@
 
 <script>
 import FlaskItem from './shared/FlaskItem.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Mixtures',
-  props: {
-    mixtures: {
-      type: Array,
-      required: true
-    }
+  computed: {
+    ...mapState({ mixtures: 'mixtures' })
   },
   components: { FlaskItem }
 }

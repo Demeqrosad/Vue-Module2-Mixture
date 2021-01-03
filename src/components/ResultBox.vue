@@ -17,7 +17,7 @@
     <p
       v-text="mixtureEffectFill"/>
     <p
-      v-text="customColors"/>
+      v-text="'There are ' + customColors + ' color(s) in your pocket!'"/>
 
     <!-- refresh btn -->
     <button-item
@@ -79,18 +79,13 @@ import ButtonItem from './shared/ButtonItem.vue'
 import ModalItem from './shared/ModalItem.vue'
 import FadeAnimation from './shared/FadeAnimation.vue'
 import modalMixin from '../mixins/ModalMixin.js'
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'ResultsBox',
-  props: {
-    mixtures: {
-      type: Array,
-      required: true
-    }
-  },
   mixins: [modalMixin],
   computed: {
+    ...mapState({ mixtures: 'mixtures' }),
     ...mapGetters({ customColors: 'CustomColorsNumber' }),
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
@@ -99,10 +94,6 @@ export default {
     linkToColor () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `/color/${redCol}/${greenCol}/${blueCol}`
-    },
-    customColors2 () {
-      const customColorsNumber = this.$store.state.colors.length
-      return `There are ${customColorsNumber} colors in your pocket!`
     }
   },
   methods: {
